@@ -1,25 +1,24 @@
-require 'nokogiri'
-require 'open-uri'
+require_relative '../lib/coin.rb
 
-
-def scrap_nom
-nom_crypto=[]
-page = Nokogiri::HTML(open("https://coinmarketcap.com/all/views/all/"))
-page.xpath('//td[2]/a').each do |nom|
-nom_crypto << nom.text
+describe "scrap_nom" do
+  it "seach name of crypto" do
+    expect(scrap_nom.lenght).to eq(2399)
+  end
 end
-puts nom_crypto
 
 
+describe "new_hash" do
 
-value_crypto=[]
-page = Nokogiri::HTML(open("https://coinmarketcap.com/all/views/all/"))
-page.xpath('//td[5]/a').each do |nom|
-value_crypto << nom.text.delete("$,").to_f.round(2)
+  it "seach name of crypto" do
+    expect(new_hash.fetch("Bitcoin")==0).to eq(false)
+  end
+
+  it "seach name of crypto" do
+    expect(new_hash.fetch("Ethereum")==0).to eq(false)
+  end
+
+  it "seach name of crypto" do
+    expect(new_hash.fetch("XRP")==0).to eq(false)
+  end
+
 end
-puts value_crypto
-
-
-
-
-#     ruby lib/coin3.rb

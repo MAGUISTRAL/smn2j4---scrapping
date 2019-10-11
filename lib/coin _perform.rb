@@ -1,6 +1,6 @@
 require 'nokogiri'
 require 'open-uri'
-
+require 'rspec'
 
 def scrap_nom
 nom_crypto=[]
@@ -22,17 +22,25 @@ return value_crypto
 end
 
 
-def hash(nom, value)
-tab = nom
-#tab2 = value
-return tab
+def result
+names = scrap_nom
+values = scrap_value
+result = []
+
+result_hash = names.map.with_index do |name, index|
+       new_hash = {}
+       new_hash[name] = values[index]
+       new_hash
+   end
+
+   return new_hash
 end
 
 
 def perform
-puts scrap_nom
-puts scrap_value
-put hash(scrap_nom, scrap_value)
+scrap_nom
+scrap_value
+result
 end
 
 perform
